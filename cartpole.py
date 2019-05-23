@@ -8,6 +8,7 @@ def run_episode(env, parameters):
         action = 0 if np.matmul(parameters,observation) < 0 else 1
         observation, reward, done, info = env.step(action)
         totalreward += reward
+        env.render()
         if done:
             break
     return totalreward
@@ -23,5 +24,7 @@ for _ in range(10000):
         bestreward = reward
         bestparams = parameters
         # considered solved if the agent lasts 200 timesteps
-        if reward == 200:
+        if reward == 1000:
             break
+
+env.close()
